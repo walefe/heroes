@@ -1,46 +1,39 @@
-import React, { Component } from 'react';
+ import React from "react";
 import { Link } from 'react-router-dom';
+ import { Form, Input } from "@rocketseat/unform";
+ import * as Yup from 'yup';
+
 
 import Logo from '../../assets/Logo.png';
+import './global';
+import { Container } from './styles';
 
-import { Form, Container } from './styles';
 
-class SignUp extends Component {
-    state = {
-        username: "",
-        email: "",
-        password: "",
-        error: ""
-    };
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email('Custom invalid email message')
+    .required('Custom required message'),
+  password: Yup.string().min(4).required(),
+})
 
-    handleSignUp = e => {
-        e.preventDefault();
-        alert("Eu vou te registrar");
-    };
+function SignUp() {
+  function handleSubmit(data) {};
 
-    render() {
-     return (
-         <Container>
-             <Form onSubmit={this.handleSignUp}>
-                <img src={Logo} alt="Logo heroes"/>
-                {this.state.error && <p>{this.state.error}</p>}
-                <input 
-                    type="text"
-                    placeholder="Nome de usuário"
-                    onChange={e => this.setState({ username: e.target.value })}
-                />
-                <input 
-                    type="password"
-                    placeholder="Senha"
-                    onChange={e => this.setState({ password: e.target.value })}
-                />
-                <button type="submit">Cadastrar</button>
-                <hr />
-                <Link to="/">Fazer Login</Link>
-             </Form>
-         </Container>
-     );
-    }
+  return (
+      <Container>
+
+        <Form schema={schema} onSubmit={handleSubmit}>
+           <img src={Logo} alt="Logo heroes"/>
+            <Input name="nome" type="nome" placeholder="nome"/> 
+            <Input name="password" type="password" placeholder="senha" />
+
+            <button type="submit">Save</button>
+            <hr />
+         <Link to="/">Fazer Login</Link>
+        </Form>
+      </Container>
+  );
 }
+
 
 export default SignUp;

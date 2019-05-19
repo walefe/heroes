@@ -1,15 +1,9 @@
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
+import "font-awesome/css/font-awesome.css";
 
-export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-`;
-
-export const Form = styled.form`
-    width: 400px;
+createGlobalStyle`
+ width: 400px;
     background: #fff;
     padding: 20px;
     display: flex;
@@ -27,7 +21,7 @@ export const Form = styled.form`
         width: 100%;
         text-align: center;
     }
-    input {
+    Input {
         flex: 1;
         height: 46px;
         margin-bottom: 15px;
